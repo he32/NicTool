@@ -4,7 +4,7 @@ package NicToolServer;
 use strict;
 use DBI;
 use DBIx::Simple;
-use RPC::XML;
+#use RPC::XML;
 use Data::Dumper;
 use Net::IP;
 

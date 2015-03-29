@@ -2,7 +2,8 @@ package NicToolServer::Client;
 # ABSTRACT: an RPC::XML implementation
 
 use strict;
-use APR::Table();
+#use APR::Table();
+use JSON;
 use RPC::XML;
 use RPC::XML::Parser;
 
