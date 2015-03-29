@@ -19,7 +19,6 @@ sub new {
     bless { 'nt_server_obj' => $nt_server_obj, 'CGI' => $q }, $class;
 }
 
-
 sub help_link {
     my ($self,$helptopic, $text) = @_;
 
