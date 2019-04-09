@@ -462,6 +462,10 @@ sub zr_uri {
 sub zr_caa {
     my ($self, $r) = @_;
 
+    # fixup for quotes around value in the DB (user error)
+    $r->{address} =~ s/^"//g;   # strip off any leading quotes
+    $r->{address} =~ s/"$//g;   # strip off any trailing quotes
+
     my $crit = $self->{nte}->is_ip_port( $r->{weight} );
     my $tag  = $r->{other};
 
