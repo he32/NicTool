@@ -614,6 +614,10 @@ sub _valid_caa {
 			 "one of $valid_uri_methods, see RFC 6844");
 	}
     }
+    if ($value =~ /\"/) {
+	$self->error('address',
+		     "Value should not contain double-quotes");
+    }
 }
 
 sub _valid_ptr {
