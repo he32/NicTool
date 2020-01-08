@@ -366,7 +366,8 @@ sub _valid_cname {
     if ($crash) {
         $self->error( 'name', "record $data->{name} already exists within zone as an ($crash->{type}) record: RFC 1034, 2181, & 4035");
     };
-    if (lc($data->{name}) eq lc($zone_text)) {
+    if ($data->{name} eq "" -o $data->{name} eq "@")
+    {
 	$self->error( 'name', "record $data->{name} already exists as NS/SOA at zone apex, cannot have CNAME at zone apex");
     }
 
