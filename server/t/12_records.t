@@ -241,7 +241,7 @@ sub doit {
     );
     noerrok($res);
     is( $res->get('error_msg'), 'name' );
-    ok( $res->get('error_desc') =~ /already exists within zone/ );
+    ok( $res->get('error_desc') =~ /already exists as NS\/SOA/ );
     if ( !$res->is_error ) {
         $res = $user->delete_zone_record(
             nt_zone_record_id => $res->{'nt_zone_record_id'} );
