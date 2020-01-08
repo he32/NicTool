@@ -233,6 +233,20 @@ sub doit {
             nt_zone_record_id => $res->{'nt_zone_record_id'} );
     }
 
+    #CNAME at zone apex should be rejected
+    $res = $zone1->new_zone_record(
+        name    => '@',
+        address => $fqdn,
+        type    => 'CNAME',
+    );
+    noerrok($res);
+    is( $res->get('error_msg'), 'name' );
+    ok( $res->get('error_desc') =~ /already exists within zone/ );
+    if ( !$res->is_error ) {
+        $res = $user->delete_zone_record(
+            nt_zone_record_id => $res->{'nt_zone_record_id'} );
+    }
+
     #invalid name (wildcards)
     for ( qw/ something* some*thing *something something.* / ) {
 
