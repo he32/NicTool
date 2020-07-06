@@ -396,9 +396,13 @@ sub display_zone_properties {
   <td class="width50">
    <table class="fat">];
     foreach ( qw/ mailaddr description serial minimum / ) {
+	my $n = $_;
+	if ($n eq "minimum") {
+	    $n = "negative-cache-ttl (aka minimum)";
+	}
         print qq[
     <tr class=light_grey_bg>
-     <td class="nowrap pad2">$_:</td>
+     <td class="nowrap pad2">$n:</td>
      <td class="fat pad2">$zone->{$_}</td>
     </tr>],
     }
@@ -1505,7 +1509,7 @@ sub display_edit_zone {
     qq[<input type="button" value="Default" onClick="this.form.expire.value=$NicToolClient::default_zone_expire"> $NicToolClient::default_zone_expire</td>
  </tr>
  <tr class=light_grey_bg>
-  <td class=right>Minimum:</td>
+  <td class=right>Negative-cache-ttl:</td>
   <td class="width80">],
     $q->textfield(
         -name      => 'minimum',
